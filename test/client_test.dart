@@ -59,7 +59,7 @@ void main() {
       expect(
           familyItem.description,
           equals(
-              "Wings of War is a series of games designed by Andrea Angiolino & Pier Giorgio Paglia that merges card and board game mechanics to recreate aerial combat.\n\n"));
+              'Wings of War is a series of games designed by Andrea Angiolino & Pier Giorgio Paglia that merges card and board game mechanics to recreate aerial combat.\n\n'));
       expect(familyItem.thumbnail.toString(),
           startsWith('https://cf.geekdo-images.com/'));
       expect(familyItem.image.toString(),

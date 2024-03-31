@@ -1,5 +1,4 @@
 import 'package:bgg_api/src/model/generic_ref.dart';
-import 'package:bgg_api/src/model/video.dart';
 import 'package:xml/xml.dart';
 
 import 'decoder.dart';

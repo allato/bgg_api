@@ -17,6 +17,12 @@ class BoardGame {
   final Uri? image;
   final List<Video> videos;
   final List<String> names;
+  final List<Generic> boardGameCategory;
+  final List<Generic> boardGameMechanic;
+  final List<Generic> boardGameFamily;
+  final List<Generic> boardGameExpansion;
+  final List<Generic> boardGameAccessory;
+  final List<Generic> boardGameImplementation;
   final List<Generic> boardGameDesigner;
   final List<Generic> boardGameArtist;
   final List<Generic> boardGamePublisher;
@@ -34,6 +40,12 @@ class BoardGame {
     required this.minAge,
     required this.thumbnail,
     required this.image,
+    this.boardGameCategory = const [],
+    this.boardGameMechanic = const [],
+    this.boardGameFamily = const [],
+    this.boardGameExpansion = const [],
+    this.boardGameAccessory = const [],
+    this.boardGameImplementation = const [],
     this.boardGameDesigner = const [],
     this.boardGameArtist = const [],
     this.boardGamePublisher = const [],

@@ -1,4 +1,5 @@
 import 'package:bgg_api/src/xml/generic_decoder.dart';
+import 'package:bgg_api/src/xml/pool_decoder.dart';
 import 'package:bgg_api/src/xml/video_decoder.dart';
 import 'package:xml/xml.dart';
 
@@ -9,6 +10,7 @@ class BoardGameDecoder extends XmlDecoder<BoardGame> {
   const BoardGameDecoder();
 
   final VideoDecoder videoDecoder = const VideoDecoder();
+  final PoolDecoder poolDecoder = const PoolDecoder();
   final GenericDecoder genericDecoder = const GenericDecoder();
 
   @override
@@ -31,6 +33,30 @@ class BoardGameDecoder extends XmlDecoder<BoardGame> {
         names: findElements(xml, 'name')
             .map((e) => e.getAttribute('value'))
             .whereType<String>()
+            .toList(),
+        boardGameFamily: findElements(xml, 'link')
+            .where((e) => e.getAttribute('type') == 'boardgamefamily')
+            .map((e) => genericDecoder.decode(e))
+            .toList(),
+        boardGameMechanic: findElements(xml, 'link')
+            .where((e) => e.getAttribute('type') == 'boardgamemechanic')
+            .map((e) => genericDecoder.decode(e))
+            .toList(),
+        boardGameCategory: findElements(xml, 'link')
+            .where((e) => e.getAttribute('type') == 'boardgamecategory')
+            .map((e) => genericDecoder.decode(e))
+            .toList(),
+        boardGameExpansion: findElements(xml, 'link')
+            .where((e) => e.getAttribute('type') == 'boardgameexpansion')
+            .map((e) => genericDecoder.decode(e))
+            .toList(),
+        boardGameAccessory: findElements(xml, 'link')
+            .where((e) => e.getAttribute('type') == 'boardgameaccessory')
+            .map((e) => genericDecoder.decode(e))
+            .toList(),
+        boardGameImplementation: findElements(xml, 'link')
+            .where((e) => e.getAttribute('type') == 'boardgameimplementation')
+            .map((e) => genericDecoder.decode(e))
             .toList(),
         boardGameDesigner: findElements(xml, 'link')
             .where((e) => e.getAttribute('type') == 'boardgamedesigner')
