@@ -10,13 +10,13 @@ class BoardGameDecoder extends XmlDecoder<BoardGame> {
   const BoardGameDecoder();
 
   final VideoDecoder videoDecoder = const VideoDecoder();
-  final PollDecoder poolDecoder = const PollDecoder();
+  final PollDecoder pollDecoder = const PollDecoder();
   final GenericDecoder genericDecoder = const GenericDecoder();
 
   @override
   BoardGame decode(XmlNode xml) {
-    print(findElements(getElement(xml, 'pool'), 'result')
-        .map((e) => poolDecoder.decode(e)));
+    print(findElements(getElement(xml, 'poll'), 'result')
+        .map((e) => pollDecoder.decode(e)));
     return BoardGame(
         id: readId(xml),
         name: readStringValueWithAttribute(xml, 'name', 'type', 'primary'),
@@ -30,8 +30,8 @@ class BoardGameDecoder extends XmlDecoder<BoardGame> {
         minAge: readIntValue(xml, 'minage'),
         thumbnail: readUri(xml, 'thumbnail'),
         image: readUri(xml, 'image'),
-        polls: findElements(getElement(xml, 'pool'), 'result')
-            .map((e) => poolDecoder.decode(e))
+        polls: findElements(getElement(xml, 'poll'), 'result')
+            .map((e) => pollDecoder.decode(e))
             .toList(),
         videos: findElements(getElement(xml, 'videos'), 'video')
             .map((e) => videoDecoder.decode(e))

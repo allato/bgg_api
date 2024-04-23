@@ -1,5 +1,5 @@
 import 'package:bgg_api/src/model/generic_ref.dart';
-import 'package:bgg_api/src/model/pool.dart';
+import 'package:bgg_api/src/model/poll.dart';
 
 import 'video.dart';
 
