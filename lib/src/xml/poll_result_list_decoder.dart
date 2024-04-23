@@ -1,17 +1,19 @@
-import 'package:bgg_api/src/model/poll.dart';
+import 'package:bgg_api/src/model/poll_result.dart';
+import 'package:bgg_api/src/xml/poll_result_value_decoder.dart';
 import 'package:xml/xml.dart';
 
 import 'decoder.dart';
 
-class PollDecoder extends XmlDecoder<Poll> {
-  const PollDecoder();
+class PollResultListDecoder extends XmlDecoder<PollResult> {
+  const PollResultListDecoder();
+
+  final PollResultValueDecoder valuesDecoder = const PollResultValueDecoder();
 
   @override
-  Poll decode(XmlNode xml) {
-    return Poll(
-      name: readStringAttribute(xml, 'name') ?? '',
-      title: readStringAttribute(xml, 'title') ?? '',
-      totalVotes: readIntAttribute(xml, 'totalvotes') ?? 0,
-    );
-  }
+  PollResult decode(XmlNode xml) => PollResult(
+        numPlayers: readStringAttribute(xml, 'numplayers') ?? '',
+        values: findElements(xml, 'result')
+            .map((e) => valuesDecoder.decode(e))
+            .toList(),
+      );
 }

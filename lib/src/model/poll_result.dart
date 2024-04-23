@@ -1,11 +1,14 @@
+import 'package:bgg_api/src/model/poll_result_value.dart';
+
 class PollResult {
-  int level;
-  String value;
-  int numVotes;
+  String? numPlayers;
+  List<PollValue> values;
 
   PollResult({
-    required this.level,
-    required this.value,
-    required this.numVotes,
+    this.numPlayers,
+    this.values = const [],
   });
+
+  int get totalVotes =>
+      values.fold(0, (prev, element) => prev + element.numVotes);
 }

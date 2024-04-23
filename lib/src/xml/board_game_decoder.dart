@@ -14,10 +14,7 @@ class BoardGameDecoder extends XmlDecoder<BoardGame> {
   final GenericDecoder genericDecoder = const GenericDecoder();
 
   @override
-  BoardGame decode(XmlNode xml) {
-    print(findElements(getElement(xml, 'poll'), 'result')
-        .map((e) => pollDecoder.decode(e)));
-    return BoardGame(
+  BoardGame decode(XmlNode xml) => BoardGame(
         id: readId(xml),
         name: readStringValueWithAttribute(xml, 'name', 'type', 'primary'),
         description: readStringUnescaped(xml, 'description'),
@@ -30,7 +27,7 @@ class BoardGameDecoder extends XmlDecoder<BoardGame> {
         minAge: readIntValue(xml, 'minage'),
         thumbnail: readUri(xml, 'thumbnail'),
         image: readUri(xml, 'image'),
-        polls: findElements(getElement(xml, 'poll'), 'result')
+        polls: findElements(xml, 'poll')
             .map((e) => pollDecoder.decode(e))
             .toList(),
         videos: findElements(getElement(xml, 'videos'), 'video')
@@ -77,5 +74,4 @@ class BoardGameDecoder extends XmlDecoder<BoardGame> {
             .map((e) => genericDecoder.decode(e))
             .toList(),
       );
-  }
 }

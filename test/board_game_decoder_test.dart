@@ -584,11 +584,8 @@ void main() {
     expect(boardGame.boardGameArtist.length, equals(1));
     expect(boardGame.boardGamePublisher.length, equals(26));
     expect(boardGame.videos.length, equals(15));
-    expect(boardGame.videos[0].id, equals(483572));
-    expect(
-        boardGame.videos[0].title,
-        equals(
-            'How to Win Splendor - Strategy Tips from the World Series of Board Gaming'));
+    expect(boardGame.videos.first.id, equals(487764));
+    expect(boardGame.videos.first.title, equals('Splendor - How to play'));
     expect(
         boardGame.names,
         equals([
@@ -603,5 +600,23 @@ void main() {
           '璀璨寶石',
           '스플렌더'
         ]));
+
+    expect(boardGame.polls.isNotEmpty, equals(true));
+    expect(boardGame.polls.length, equals(3));
+    expect(boardGame.polls[0].results.length, equals(5));
+    expect(boardGame.polls[0].results[0].values.length, equals(3));
+    expect(boardGame.polls[0].results[0].values[0].value, equals('Best'));
+    expect(boardGame.polls[0].results[0].values[0].numVotes, equals(1));
+    expect(boardGame.polls[0].results[0].totalVotes, equals(669 + 15 + 1));
+    expect(boardGame.polls[1].results.length, equals(1));
+    expect(boardGame.polls[1].results.first.values.last.value,
+        equals('21 and up'));
+    expect(boardGame.polls[1].results.first.totalVotes,
+        equals(7 + 12 + 65 + 155 + 64 + 5 + 1 + 2));
+    expect(boardGame.polls[2].results.length, equals(1));
+    expect(boardGame.polls[2].results.first.values.first.level, equals(1));
+    expect(boardGame.polls[2].results.first.totalVotes, equals(165 + 1 + 2));
+    expect(boardGame.polls[2].results.first.values.last.value,
+        equals('Unplayable in another language'));
   });
 }

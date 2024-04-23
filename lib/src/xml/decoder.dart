@@ -33,7 +33,7 @@ abstract class XmlDecoder<T> {
 
   @protected
   String? readString(XmlNode xml, String path) {
-    return xml.findAllElements(path).firstOrNull?.value;
+    return xml.findAllElements(path).firstOrNull?.innerText;
   }
 
   @protected
