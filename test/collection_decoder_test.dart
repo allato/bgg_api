@@ -38,7 +38,7 @@ void main() {
 
     expect(collection.items, hasLength(2));
     final items = collection.items;
-    expect(items[0].name, equals('6. bierze!'));
+    expect(items.first.name, equals('6. bierze!'));
     expect(items[0].yearPublished, equals(2013));
     expect(items[0].numPlays, equals(7));
     expect(items[0].subtype, equals('boardgame'));

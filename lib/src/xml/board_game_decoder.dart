@@ -1,5 +1,5 @@
 import 'package:bgg_api/src/xml/generic_decoder.dart';
-import 'package:bgg_api/src/xml/pool_decoder.dart';
+import 'package:bgg_api/src/xml/poll_decoder.dart';
 import 'package:bgg_api/src/xml/video_decoder.dart';
 import 'package:xml/xml.dart';
 
@@ -10,11 +10,14 @@ class BoardGameDecoder extends XmlDecoder<BoardGame> {
   const BoardGameDecoder();
 
   final VideoDecoder videoDecoder = const VideoDecoder();
-  final PoolDecoder poolDecoder = const PoolDecoder();
+  final PollDecoder poolDecoder = const PollDecoder();
   final GenericDecoder genericDecoder = const GenericDecoder();
 
   @override
-  BoardGame decode(XmlNode xml) => BoardGame(
+  BoardGame decode(XmlNode xml) {
+    print(findElements(getElement(xml, 'pool'), 'result')
+        .map((e) => poolDecoder.decode(e)));
+    return BoardGame(
         id: readId(xml),
         name: readStringValueWithAttribute(xml, 'name', 'type', 'primary'),
         description: readStringUnescaped(xml, 'description'),
@@ -27,6 +30,9 @@ class BoardGameDecoder extends XmlDecoder<BoardGame> {
         minAge: readIntValue(xml, 'minage'),
         thumbnail: readUri(xml, 'thumbnail'),
         image: readUri(xml, 'image'),
+        polls: findElements(getElement(xml, 'pool'), 'result')
+            .map((e) => poolDecoder.decode(e))
+            .toList(),
         videos: findElements(getElement(xml, 'videos'), 'video')
             .map((e) => videoDecoder.decode(e))
             .toList(),
@@ -71,4 +77,5 @@ class BoardGameDecoder extends XmlDecoder<BoardGame> {
             .map((e) => genericDecoder.decode(e))
             .toList(),
       );
+  }
 }

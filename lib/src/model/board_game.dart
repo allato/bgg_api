@@ -1,4 +1,5 @@
 import 'package:bgg_api/src/model/generic_ref.dart';
+import 'package:bgg_api/src/model/pool.dart';
 
 import 'video.dart';
 
@@ -26,6 +27,8 @@ class BoardGame {
   final List<Generic> boardGameDesigner;
   final List<Generic> boardGameArtist;
   final List<Generic> boardGamePublisher;
+  final List<Poll> polls;
+  // final  suggestedPlayerAge
 
   BoardGame({
     required this.id,
@@ -50,11 +53,12 @@ class BoardGame {
     this.boardGameArtist = const [],
     this.boardGamePublisher = const [],
     this.videos = const [],
+    this.polls = const [],
     this.names = const [],
   });
 
   @override
   String toString() {
-    return 'BoardGame{id: $id, name: $name, description: $description, yearPublished: $yearPublished, minPlayers: $minPlayers, maxPlayers: $maxPlayers, playingTime: $playingTime, minPlayTime: $minPlayTime, maxPlayTime: $maxPlayTime, minAge: $minAge, thumbnail: $thumbnail, image: $image, videos: $videos}';
+    return 'BoardGame{id: $id, name: $name, description: $description, yearPublished: $yearPublished, minPlayers: $minPlayers, maxPlayers: $maxPlayers, playingTime: $playingTime, minPlayTime: $minPlayTime, maxPlayTime: $maxPlayTime, minAge: $minAge, thumbnail: $thumbnail, image: $image, videos: $videos, polls: $polls}';
   }
 }
