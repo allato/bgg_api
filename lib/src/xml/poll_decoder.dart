@@ -10,9 +10,7 @@ class PollDecoder extends XmlDecoder<Poll> {
   final PollResultListDecoder resultsDecoder = const PollResultListDecoder();
 
   @override
-  Poll decode(XmlNode xml) {
-    // print(xml);
-    return Poll(
+  Poll decode(XmlNode xml) => Poll(
         name: readStringAttribute(xml, 'name') ?? '',
         title: readStringAttribute(xml, 'title') ?? '',
         totalVotes: readIntAttribute(xml, 'totalvotes') ?? 0,
@@ -20,5 +18,4 @@ class PollDecoder extends XmlDecoder<Poll> {
             .map((e) => resultsDecoder.decode(e))
             .toList(),
       );
-  }
 }
