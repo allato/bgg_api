@@ -8,4 +8,8 @@ class PollValue {
     required this.value,
     required this.numVotes,
   });
+  @override
+  String toString() {
+    return 'level:$level,numVotes:$numVotes,value:$value';
+  }
 }

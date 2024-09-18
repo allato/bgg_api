@@ -15,6 +15,16 @@ void main() {
       expect(await bgg.searchBoardGames('catan'), hasLength(greaterThan(0)));
       expect(await bgg.searchBoardGames('splendor'), hasLength(greaterThan(0)));
       expect(await bgg.searchBoardGames('saboteur'), hasLength(greaterThan(0)));
+      expect(await bgg.searchBoardGames('evolution', exact: true, limit: 10, offset: 0),
+          hasLength(equals(6)));
+    });
+
+    test('should search board games with limit', () async {
+      var bgg = Bgg();
+      expect(await bgg.searchBoardGames('catan', limit: 10, offset: 0),
+          hasLength(equals(10)));
+      expect(await bgg.searchBoardGames('splendor', limit: 10, offset: 20), hasLength(equals(4)));
+      expect(await bgg.searchBoardGames('saboteur', limit: 2, offset: 2), hasLength(equals(2)));
     });
 
     test("should contain query in every board game's name", () async {

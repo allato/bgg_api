@@ -11,4 +11,9 @@ class PollResult {
 
   int get totalVotes =>
       values.fold(0, (prev, element) => prev + element.numVotes);
+
+  @override
+  String toString() {
+      return 'numPlayers:$numPlayers,values:${values.join(',\n')}';
+  }
 }

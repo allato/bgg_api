@@ -27,9 +27,18 @@ class BoardGameDecoder extends XmlDecoder<BoardGame> {
         minAge: readIntValue(xml, 'minage'),
         thumbnail: readUri(xml, 'thumbnail'),
         image: readUri(xml, 'image'),
-        polls: findElements(xml, 'poll')
+        pollSuggestedNumPlayers: findElements(xml, 'poll')
+            .where((e) => e.getAttribute('name') == 'suggested_numplayers')
             .map((e) => pollDecoder.decode(e))
-            .toList(),
+            .first,
+        pollSuggestedPlayerAge: findElements(xml, 'poll')
+            .where((e) => e.getAttribute('name') == 'suggested_playerage')
+            .map((e) => pollDecoder.decode(e))
+            .first,
+        pollLanguageDependence: findElements(xml, 'poll')
+            .where((e) => e.getAttribute('name') == 'language_dependence')
+            .map((e) => pollDecoder.decode(e))
+            .first,
         videos: findElements(getElement(xml, 'videos'), 'video')
             .map((e) => videoDecoder.decode(e))
             .toList(),

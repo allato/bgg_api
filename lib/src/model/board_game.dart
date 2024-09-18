@@ -27,7 +27,10 @@ class BoardGame {
   final List<Generic> boardGameDesigner;
   final List<Generic> boardGameArtist;
   final List<Generic> boardGamePublisher;
-  final List<Poll> polls;
+  final Poll? pollSuggestedNumPlayers;
+  final Poll? pollSuggestedPlayerAge;
+  final Poll? pollLanguageDependence;
+
   // final  suggestedPlayerAge
 
   BoardGame({
@@ -53,12 +56,14 @@ class BoardGame {
     this.boardGameArtist = const [],
     this.boardGamePublisher = const [],
     this.videos = const [],
-    this.polls = const [],
+    this.pollSuggestedNumPlayers,
+    this.pollSuggestedPlayerAge,
+    this.pollLanguageDependence,
     this.names = const [],
   });
 
   @override
   String toString() {
-    return 'BoardGame{id: $id, name: $name, description: $description, yearPublished: $yearPublished, minPlayers: $minPlayers, maxPlayers: $maxPlayers, playingTime: $playingTime, minPlayTime: $minPlayTime, maxPlayTime: $maxPlayTime, minAge: $minAge, thumbnail: $thumbnail, image: $image, videos: $videos, polls: $polls}';
+    return 'BoardGame{id: $id, name: $name, description: $description, yearPublished: $yearPublished, minPlayers: $minPlayers, maxPlayers: $maxPlayers, playingTime: $playingTime, minPlayTime: $minPlayTime, maxPlayTime: $maxPlayTime, minAge: $minAge, thumbnail: $thumbnail, image: $image, videos: $videos, pollSuggestedNumPlayers: \$pollSuggestedNumPlayers, pollSuggestedPlayerAge: $pollSuggestedPlayerAge, pollLanguageDependence: $pollLanguageDependence}';
   }
 }

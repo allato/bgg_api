@@ -13,8 +13,11 @@ class SearchParameters extends QueryParameters {
   /// Limit results to items that match the SEARCH_QUERY exactly
   final bool exact;
 
-  SearchParameters(
-      {required this.query, this.type = const [], this.exact = false});
+  SearchParameters({
+    required this.query,
+    this.type = const [],
+    this.exact = false,
+  });
 
   @override
   Map<String, dynamic> toMap() {

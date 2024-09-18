@@ -609,7 +609,6 @@ void main() {
           '스플렌더'
         ]));
 
-
     // Category
     expect(boardGame.boardGameCategory.isNotEmpty, equals(true));
     expect(boardGame.boardGameCategory.length, equals(3));
@@ -621,48 +620,71 @@ void main() {
     expect(boardGame.boardGameMechanic.length, equals(4));
     expect(boardGame.boardGameMechanic.first.value, equals('Contracts'));
     expect(boardGame.boardGameMechanic.last.id, equals(2004));
-    
+
     // Family
     expect(boardGame.boardGameFamily.isNotEmpty, equals(true));
     expect(boardGame.boardGameFamily.length, equals(7));
-    expect(boardGame.boardGameFamily.first.value, equals('Category: Dized Tutorial'));
+    expect(boardGame.boardGameFamily.first.value,
+        equals('Category: Dized Tutorial'));
     expect(boardGame.boardGameFamily.last.id, equals(78198));
 
     // Expansion
     expect(boardGame.boardGameExpansion.isNotEmpty, equals(true));
     expect(boardGame.boardGameExpansion.length, equals(15));
-    expect(boardGame.boardGameExpansion.first.value, equals('Brettspiel Adventskalender 2015'));
+    expect(boardGame.boardGameExpansion.first.value,
+        equals('Brettspiel Adventskalender 2015'));
     expect(boardGame.boardGameExpansion.last.id, equals(261074));
 
     // Accessory
     expect(boardGame.boardGameAccessory.isNotEmpty, equals(true));
     expect(boardGame.boardGameAccessory.length, equals(20));
-    expect(boardGame.boardGameAccessory.first.value, equals('Splendor: AsmOPlay Gold Tokens'));
+    expect(boardGame.boardGameAccessory.first.value,
+        equals('Splendor: AsmOPlay Gold Tokens'));
     expect(boardGame.boardGameAccessory.last.id, equals(185398));
 
     // Implementation
     expect(boardGame.boardGameImplementation.isNotEmpty, equals(true));
     expect(boardGame.boardGameImplementation.length, equals(3));
-    expect(boardGame.boardGameImplementation.first.value, equals('Splendor Duel'));
+    expect(
+        boardGame.boardGameImplementation.first.value, equals('Splendor Duel'));
     expect(boardGame.boardGameImplementation.last.id, equals(406291));
 
     // Polls
-    expect(boardGame.polls.isNotEmpty, equals(true));
-    expect(boardGame.polls.length, equals(3));
-    expect(boardGame.polls[0].results.length, equals(5));
-    expect(boardGame.polls[0].results[0].values.length, equals(3));
-    expect(boardGame.polls[0].results[0].values[0].value, equals('Best'));
-    expect(boardGame.polls[0].results[0].values[0].numVotes, equals(1));
-    expect(boardGame.polls[0].results[0].totalVotes, equals(669 + 15 + 1));
-    expect(boardGame.polls[1].results.length, equals(1));
-    expect(boardGame.polls[1].results.first.values.last.value,
+    expect(boardGame.pollLanguageDependence, isNotNull);
+    expect(boardGame.pollSuggestedPlayerAge, isNotNull);
+    expect(boardGame.pollSuggestedNumPlayers?.results.length ?? 0, equals(5));
+    expect(boardGame.pollSuggestedNumPlayers?.results.first.values,
+        hasLength(equals(3)));
+    expect(boardGame.pollSuggestedNumPlayers?.results.first.numPlayers ?? '0',
+        equals('1'));
+    expect(boardGame.pollSuggestedNumPlayers?.results.first.values,
+        hasLength(equals(3)));
+    expect(boardGame.pollSuggestedNumPlayers?.results.last.numPlayers ?? '0',
+        equals('4+'));
+    expect(
+        boardGame.pollSuggestedNumPlayers?.results.first.values.first.value ??
+            '',
+        equals('Best'));
+    expect(
+        boardGame
+                .pollSuggestedNumPlayers?.results.first.values.first.numVotes ??
+            0,
+        equals(1));
+    expect(boardGame.pollSuggestedNumPlayers?.results.first.totalVotes,
+        equals(669 + 15 + 1));
+    expect(boardGame.pollSuggestedPlayerAge?.results, hasLength(equals(1)));
+    expect(
+        boardGame.pollSuggestedPlayerAge?.results.first.values.last.value ?? 0,
         equals('21 and up'));
-    expect(boardGame.polls[1].results.first.totalVotes,
+    expect(boardGame.pollSuggestedPlayerAge?.results.first.totalVotes ?? 0,
         equals(7 + 12 + 65 + 155 + 64 + 5 + 1 + 2));
-    expect(boardGame.polls[2].results.length, equals(1));
-    expect(boardGame.polls[2].results.first.values.first.level, equals(1));
-    expect(boardGame.polls[2].results.first.totalVotes, equals(165 + 1 + 2));
-    expect(boardGame.polls[2].results.first.values.last.value,
+    expect(boardGame.pollLanguageDependence?.results.length, equals(1));
+    expect(
+        boardGame.pollLanguageDependence?.results.first.values.first.level ?? 0,
+        equals(1));
+    expect(boardGame.pollLanguageDependence?.results.first.totalVotes ?? 0,
+        equals(165 + 1 + 2));
+    expect(boardGame.pollLanguageDependence?.results.first.values.last.value,
         equals('Unplayable in another language'));
   });
 }

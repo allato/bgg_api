@@ -12,4 +12,9 @@ class Poll {
     required this.totalVotes,
     required this.results,
   });
+
+  @override
+  String toString() {
+    return 'name:$name,title:$title,totalVotes:$totalVotes,results:${results.join(',\n')}\n\n\n';
+  }
 }

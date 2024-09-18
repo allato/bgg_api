@@ -6,7 +6,6 @@ import 'decoder.dart';
 
 class PollDecoder extends XmlDecoder<Poll> {
   const PollDecoder();
-
   final PollResultListDecoder resultsDecoder = const PollResultListDecoder();
 
   @override
